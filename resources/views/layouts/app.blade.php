@@ -21,21 +21,25 @@
       </li>
     </ul>
     <ul class="flex items-center">
+      @auth
       <li>
-        <a href="" class="p-3">Petjamoli</a>
+        <a href="" class="p-3">{{ auth()->user()->username }}</a>
       </li>
       <li>
-        <form action="" method="post" class="p-3 inline">
-        <button type="submit">Logout</button>
+        <form action="{{ route('logout') }}" method="post" class="p-3 inline">
+          @csrf
+          <button type="submit">Logout</button>
         </form>
       </li>
-
+      @endauth
+      @guest
       <li>
-        <a href="" class="p-3">Login</a>
+        <a href="{{ route('login') }}" class="p-3">Login</a>
       </li>
       <li>
-        <a href="" class="p-3">Register</a>
+        <a href="{{ route('register') }}" class="p-3">Register</a>
       </li>
+      @endguest
     </ul>
   </nav>
   @yield('content')
