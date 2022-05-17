@@ -17,4 +17,10 @@
       </span>
     </div>
   @endif
+  @auth
+    <form action="{{ route('dashboard') }}" method="post">
+      @csrf
+      <button type="submit" class="bg-blue-500 mt-2 text-white px-2 py-2 rounded font-light">Add to Watchlist</button>
+    </form>
+  @endauth
 </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\WatchlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class, 'showFeatured'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'show'])->name('dashboard');
+Route::post('/', [DashboardController::class, 'store']);
+Route::delete('/{crypto}', [DashboardController::class, 'destroy'])->name('dashboard.destroy');
+
+Route::get('/watchlist', [WatchlistController::class, 'show'])->name('watchlist');
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 

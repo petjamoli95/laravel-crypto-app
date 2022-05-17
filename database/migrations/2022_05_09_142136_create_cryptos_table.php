@@ -18,27 +18,6 @@ return new class extends Migration
             $table->string('api_id');
             $table->string('symbol');
             $table->string('name');
-            // $table->string('image');
-            // $table->integer('current_price')->unsigned();
-            // $table->bigInteger('martket_cap')->unsigned();
-            // $table->integer('market_cap_rank')->unsigned();
-            // $table->bigInteger('fully_diluted_valuation')->unsigned();
-            // $table->bigInteger('total_volume')->unsigned();
-            // $table->integer('high_24h')->unsigned();
-            // $table->integer('low_24h')->unsigned();
-            // $table->integer('price_change_24');
-            // $table->bigInteger('price_change_percentage_24');
-            // $table->bigInteger('circulating_supply')->unsigned();
-            // $table->bigInteger('total_supply')->unsigned();
-            // $table->bigInteger('max_supply')->unsigned();
-            // $table->integer('ath')->unsigned();
-            // $table->integer('ath_change_percentage');
-            // $table->date('ath_date');
-            // $table->integer('atl')->unsigned();
-            // $table->integer('atl_change_percentage');
-            // $table->date('atl_date');
-            // $table->integer('roi');
-            // $table->timestamps();
         });
     }
 
