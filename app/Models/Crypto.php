@@ -28,4 +28,9 @@ class Crypto extends Model
     {
       return $this->belongsToMany(User::class);
     }
+
+    public function cryptodetails()
+    {
+      return $this->hasOne(CryptoDetails::class, 'api_id');
+    }
 }

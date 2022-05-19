@@ -22,8 +22,8 @@ class CryptoDetails extends Model
       'high_24h',
       'low_24h',
       'price_change_24h',
-      'price_change_percentage_24',
-      'market_cap_change_24',
+      'price_change_percentage_24h',
+      'market_cap_change_24h',
       'market_cap_change_percentage_24h',
       'circulating_supply',
       'total_supply',
@@ -38,8 +38,8 @@ class CryptoDetails extends Model
       'last_updated'
     ];
 
-    // public function cryptos()
-    // {
-    //   $this->
-    // }
+    public function cryptos()
+    {
+      return $this->belongsTo(Crypto::class, 'api_id');
+    }
 }

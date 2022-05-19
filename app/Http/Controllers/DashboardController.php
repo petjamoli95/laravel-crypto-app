@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Crypto;
+use App\Models\CryptoDetails;
 use App\Services\CoingeckoAPI;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class DashboardController extends Controller
 
     public function show()
     {
-      $featured = $this->coingecko_api->getFeatured();
+      $featured = CryptoDetails::all();
 
       return view('dashboard', compact('featured'));
     }
