@@ -35,9 +35,9 @@ class GetTopCoinDetailsFromApi extends Command
 
       foreach ($response as $item)
       {
-        $crypto = CryptoDetails::firstOrCreate([
-          'api_id' => Arr::get($item, 'id'),
-          'symbol' => Arr::get($item, 'symbol'),
+        $crypto = CryptoDetails::firstOrCreate(
+          ['api_id' => Arr::get($item, 'id')],
+          ['symbol' => Arr::get($item, 'symbol'),
           'name' => Arr::get($item, 'name'),
           'image' => Arr::get($item, 'image'),
           'current_price' => Arr::get($item, 'current_price'),
@@ -60,9 +60,8 @@ class GetTopCoinDetailsFromApi extends Command
           'atl' => Arr::get($item, 'atl'),
           'atl_change_percentage' => Arr::get($item, 'atl_change_percentage'),
           'atl_date' => Carbon::parse(Arr::get($item, 'atl_date'))->format('Y-m-d H:m:s'),
-          // 'roi' => Arr::get($item, 'roi'),
-          'last_updated' => Carbon::parse(Arr::get($item, 'last_updated'))->format('Y-m-d H:m:s')
-          ]);
+          'last_updated' => Carbon::parse(Arr::get($item, 'last_updated'))->format('Y-m-d H:m:s')]
+          );
       }
     }
 }

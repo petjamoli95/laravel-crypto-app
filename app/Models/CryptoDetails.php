@@ -34,7 +34,6 @@ class CryptoDetails extends Model
       'atl',
       'atl_change_percentage',
       'atl_date',
-      'roi',
       'last_updated'
     ];
 
