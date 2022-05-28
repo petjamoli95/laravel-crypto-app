@@ -41,4 +41,9 @@ class CryptoDetails extends Model
     {
       return $this->belongsTo(Crypto::class, 'api_id');
     }
+
+    public function belongsToCrypto (Crypto $crypto)
+    {
+      return $this->cryptos->find($crypto->api_id);
+    }
 }

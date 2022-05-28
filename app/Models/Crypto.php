@@ -21,7 +21,7 @@ class Crypto extends Model
 
     public function watchlistedBy (User $user)
     {
-      return $this->users->contains('user_id', $user->id);
+      return $this->users->find($user->id);
     }
 
     public function users()

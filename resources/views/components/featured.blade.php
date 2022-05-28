@@ -1,7 +1,10 @@
 @props(['crypto' => $crypto])
 
 <div class="flex-col py-8 justify-center items-center text-center">
-  <img class='h-40 m-auto' src="{{ $crypto['image'] }}" alt="" />
+  <a href="{{ route('cryptos.show', $crypto) }}">
+    <img class='h-40 m-auto' src="{{ $crypto['image'] }}" alt="" />
+    <h1 class="font-bold pt-4">{{ $crypto['name'] }}</h1>
+  </a>
   <p>${{ number_format($crypto['current_price'], 2) }}</p>
   @if ($crypto['price_change_percentage_24h'] < 0)
     <div class='flex justify-center'>

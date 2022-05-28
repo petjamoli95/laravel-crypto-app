@@ -9,13 +9,6 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    private CoingeckoAPI $coingecko_api;
-
-    public function __construct(CoingeckoAPI $coingecko_api)
-    {
-      $this->coingecko_api = $coingecko_api;
-    }
-
     public function show()
     {
       $top_cryptos = CryptoDetails::all();
@@ -27,7 +20,8 @@ class DashboardController extends Controller
     public function store(Request $request)
     {
       $item = Crypto::where('api_id', $request->api_id)->first();
-      if ($item->users()->find($request->user())) {
+
+      if ($item->watchlistedBy($request->user())) {
         return back();
       } else {
         $item->users()->attach([

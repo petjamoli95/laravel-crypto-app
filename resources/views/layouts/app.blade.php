@@ -21,6 +21,17 @@
       </li>
     </ul>
     <ul class="flex items-center">
+      <div class='text-gray-400 lg:block hidden'>
+        <form class="border-2 rounded-lg" method="post" action="{{ route('cryptos.index') }}">
+          @csrf
+          <input class='h-10 pl-2 pr-4 rounded-lg focus:outline-none' type='text' name='search' placeholder='Search...' />
+          <button type='submit' class="mr-2 align-middle">
+            <svg xmlns="http://www.w3.org/2000/svg" class="pb-1 text-gray-400 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        </form>
+      </div>
       @auth
       <li>
         <a href="" class="p-3">{{ auth()->user()->username }}</a>
