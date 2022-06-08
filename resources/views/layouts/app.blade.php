@@ -21,8 +21,8 @@
       </li>
     </ul>
     <ul class="flex items-center">
-      <div class='text-gray-400 lg:block hidden'>
-        <form class="border-2 rounded-lg" method="post" action="{{ route('cryptos.index') }}">
+      <div class='text-gray-400 lg:block hidden mr-4'>
+        <form class="border-2 rounded-lg" method="post" action="{{ route('crypto.index') }}">
           @csrf
           <input class='h-10 pl-2 pr-4 rounded-lg focus:outline-none' type='text' name='search' placeholder='Search...' />
           <button type='submit' class="mr-2 align-middle">

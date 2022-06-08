@@ -11,33 +11,8 @@ class DashboardController extends Controller
 {
     public function show()
     {
-      $top_cryptos = CryptoDetails::all();
-      $featured = $top_cryptos->sortBy('market_cap_rank');
-
+      $featured = CryptoDetails::orderBy('market_cap_rank')->paginate(100);
+      
       return view('dashboard', compact('featured'));
-    }
-
-    public function store(Request $request)
-    {
-      $item = Crypto::where('api_id', $request->api_id)->first();
-
-      if ($item->watchlistedBy($request->user())) {
-        return back();
-      } else {
-        $item->users()->attach([
-          'user_id' => $request->user()->id
-        ]);
-      }
-
-      return back();
-    }
-
-    public function destroy(Request $request)
-    {
-      $item = Crypto::where('api_id', $request->api_id)->first();
-
-      $request->user()->cryptos()->detach($item->id);
-
-      return back();
     }
 }

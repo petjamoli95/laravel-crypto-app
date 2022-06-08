@@ -37,9 +37,9 @@ class CryptoDetails extends Model
       'last_updated'
     ];
 
-    public function cryptos()
+    public function crypto()
     {
-      return $this->belongsTo(Crypto::class, 'api_id');
+      return $this->belongsTo(Crypto::class, 'api_id', 'api_id');
     }
 
     public function belongsToCrypto (Crypto $crypto)

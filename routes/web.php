@@ -20,14 +20,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [DashboardController::class, 'show'])->name('dashboard');
-Route::post('/', [DashboardController::class, 'store']);
-Route::delete('/{crypto}', [DashboardController::class, 'destroy'])->name('dashboard.destroy');
+Route::post('/', [WatchlistController::class, 'store']);
+Route::delete('/{crypto}', [WatchlistController::class, 'destroy'])->name('dashboard.destroy');
 
 Route::get('/watchlist', [WatchlistController::class, 'show'])->name('watchlist');
 Route::delete('/watchlist/{crypto}', [WatchlistController::class, 'destroy'])->name('watchlist.destroy');
 
-Route::post('/cryptos', [CryptoController::class, 'index'])->name('cryptos.index');
-Route::get('/cryptos/{crypto:api_id}', [CryptoController::class, 'show'])->name('cryptos.show');
+Route::post('/cryptos/index', [CryptoController::class, 'index'])->name('crypto.index');
+Route::get('/cryptos/show/{crypto:api_id}', [CryptoController::class, 'show'])->name('crypto.show');
+Route::post('/cryptos/show/', [WatchlistController::class, 'store'])->name('crypto.store');
+Route::delete('/cryptos/show/', [WatchlistController::class, 'destroy'])->name('crypto.destroy');
 
 Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
@@ -36,3 +38,5 @@ Route::post('/login', [LoginController::class, 'store']);
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
+
+// Route::resource('cryptos', CryptoController::class);
