@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command(UpdateTopCoinDetailsFromApi::class)->everyFiveMinutes();
+        $schedule->command(UpdateTopCoinDetailsFromApi::class)->everyMinute();
     }
 
     /**

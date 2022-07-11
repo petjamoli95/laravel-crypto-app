@@ -6,5 +6,4 @@
       <x-featured :crypto="$crypto" />
     @endforeach
   </div>
-  {{ $featured->links() }}
 @endsection
