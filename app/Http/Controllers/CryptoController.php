@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\CryptoInterface;
 use App\Models\Crypto;
 use App\Services\CoingeckoAPI;
 use Illuminate\Http\Request;
 
 class CryptoController extends Controller
 {
+  private CryptoInterface $cryptoRepository;
+
+  public function __construct(CryptoInterface $cryptoRepository)
+  {
+    $this->cryptoRepository = $cryptoRepository;
+  }
+  
   public function index(Request $request)
   {
-    $cryptos = Crypto::where('api_id', 'like', '%'.$request->input('search').'%')
-      ->orWhere('name', 'like', '%'.$request->input('search').'%')
-      ->orWhere('symbol', 'like', $request->input('search'))
-      ->get();
+    $cryptos = $this->cryptoRepository->getCryptoBySearch($request->input('search'));
 
     return view('crypto.index', compact('cryptos'));
   }

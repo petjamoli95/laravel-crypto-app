@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Crypto;
-use App\Models\CryptoDetails;
+use App\Interfaces\CryptoDetailsInterface;
 use App\Services\CoingeckoAPI;
 use Illuminate\Http\Request;
+use App\Models\CryptoDetails;
 
 class DashboardController extends Controller
 {
+  private CryptoDetailsInterface $cryptodetailsRepository;
+
+  public function __construct(CryptoDetailsInterface $cryptodetailsRepository)
+  {
+    $this->cryptodetailsRepository = $cryptodetailsRepository;
+  }
+
     public function show()
     {
-      $featured = CryptoDetails::orderBy('market_cap_rank')->paginate(100);
+      $featured = $this->cryptodetailsRepository->getTopCryptoDetails();
       
       return view('dashboard', compact('featured'));
     }
