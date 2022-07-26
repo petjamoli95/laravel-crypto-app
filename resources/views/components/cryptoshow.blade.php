@@ -19,13 +19,13 @@
   @endif
   @auth
   @if (!$crypto->crypto->watchlistedBy(Auth::user()))
-    <form action="{{ route('crypto.store', $crypto) }}" method="post">
+    <form action="{{ route('watchlist.store', $crypto) }}" method="post">
       @csrf
       <input type="hidden" name="api_id" value="{{ $crypto->api_id }}">
       <button type="submit" class="bg-blue-500 mt-2 text-white px-2 py-2 rounded font-light">Add to Watchlist</button>
     </form>
   @else
-    <form action="{{ route('crypto.destroy', $crypto) }}" method="post">
+    <form action="{{ route('watchlist.destroy', $crypto) }}" method="post">
       @csrf
       @method('DELETE')
       <input type="hidden" name="api_id" value="{{ $crypto->api_id }}">

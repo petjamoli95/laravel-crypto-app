@@ -17,12 +17,12 @@
         <a href="{{ route('dashboard') }}" class="p-3">Dashboard</a>
       </li>
       <li>
-        <a href="{{ route('watchlist') }}" class="p-3">Watchlist</a>
+        <a href="{{ route('watchlist.index') }}" class="p-3">Watchlist</a>
       </li>
     </ul>
     <ul class="flex items-center">
       <div class='text-gray-400 lg:block hidden mr-4'>
-        <form class="border-2 rounded-lg" method="post" action="{{ route('crypto.index') }}">
+        <form class="border-2 rounded-lg" method="get" action="{{ route('crypto.index') }}">
           @csrf
           <input class='h-10 pl-2 pr-4 rounded-lg focus:outline-none' type='text' name='search' placeholder='Search...' />
           <button type='submit' class="mr-2 align-middle">
@@ -45,10 +45,10 @@
       @endauth
       @guest
       <li>
-        <a href="{{ route('login') }}" class="p-3">Login</a>
+        <a href="{{ route('login.index') }}" class="p-3">Login</a>
       </li>
       <li>
-        <a href="{{ route('register') }}" class="p-3">Register</a>
+        <a href="{{ route('register.index') }}" class="p-3">Register</a>
       </li>
       @endguest
     </ul>

@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Interfaces\CryptoInterface;
 use App\Interfaces\CryptoDetailsInterface;
-use App\Repositories\CryptoRepository;
+use App\Interfaces\CryptoInterface;
 use App\Repositories\CryptoDetailsRepository;
+use App\Repositories\CryptoRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -17,7 +17,6 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(CryptoInterface::class, CryptoRepository::class);
         $this->app->bind(CryptoDetailsInterface::class, CryptoDetailsRepository::class);
     }
 

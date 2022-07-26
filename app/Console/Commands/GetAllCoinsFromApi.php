@@ -14,7 +14,7 @@ class GetAllCoinsFromApi extends Command
      *
      * @var string
      */
-    protected $signature = 'command:getallcoins';
+    protected $signature = 'command:get-all-coins';
 
     /**
      * The console command description.
@@ -28,17 +28,21 @@ class GetAllCoinsFromApi extends Command
      *
      * @return int
      */
-    public function handle(CoingeckoAPI $coingecko_api)
+    public function handle()
     {
-      $response = $coingecko_api->getAllCoins();
+        $cryptos = CoingeckoAPI::getAllCoins();
 
-      foreach ($response as $item)
-      {
-        $crypto = Crypto::firstOrCreate([
-          'api_id' => Arr::get($item, 'id'),
-          'symbol' => Arr::get($item, 'symbol'),
-          'name' => Arr::get($item, 'name')
-        ]);
-      }
+        $bar = $this->output->createProgressBar(count($cryptos));
+        $bar->start();
+
+        foreach ($cryptos as $crypto) {
+            Crypto::firstOrCreate([
+                'api_id' => Arr::get($crypto, 'id'),
+                'symbol' => Arr::get($crypto, 'symbol'),
+                'name' => Arr::get($crypto, 'name'),
+            ]);
+
+            $bar->advance();
+        }
     }
 }

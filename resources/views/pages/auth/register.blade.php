@@ -3,7 +3,7 @@
 @section('content')
   <div class="flex justify-center py-8">
     <div class="w-4/12">
-      <form action="{{ route('register') }}" method="post">
+      <form action="{{ route('register.store') }}" method="post">
         @csrf
         <div class="mb-4">
           <label for="name" class="sr-only">Name</label>

@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('crypto_user', function (Blueprint $table) {
+        Schema::create('crypto_detail_user', function (Blueprint $table) {
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('crypto_id')->unsigned();
+            $table->bigInteger('crypto_detail_id')->unsigned();
             $table->foreign('user_id')
               ->references('id')
               ->on('users')
               ->onDelete('cascade');
-              $table->foreign('crypto_id')
+            $table->foreign('crypto_detail_id')
               ->references('id')
-              ->on('cryptos')
+              ->on('crypto_details')
               ->onDelete('cascade');
         });
     }

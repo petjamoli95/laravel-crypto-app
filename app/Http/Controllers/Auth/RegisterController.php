@@ -3,40 +3,34 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Auth\RegisterRequest;
+use App\Jobs\Auth\RegisterUser;
 
 class RegisterController extends Controller
 {
     public function __construct()
     {
-      $this->middleware('guest');
+        $this->middleware('guest');
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index()
     {
-      return view('auth.register');
+        return view('pages.auth.register');
     }
 
-    public function store(Request $request)
+    /**
+     * @param  RegisterRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(RegisterRequest $request)
     {
-      $this->validate($request, [
-        'name' => 'required|max:255',
-        'username' => 'required|max:255',
-        'email' => 'required|email|max:255',
-        'password' => 'required|confirmed'
-      ]);
+        $user = RegisterUser::dispatchSync($request->validated());
 
-      User::create([
-        'name' => $request->name,
-        'username' => $request->username,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-      ]);
+        auth()->guard()->login($user);
 
-      auth()->attempt($request->only('username', 'password'));
-
-      return redirect()->route('dashboard');
+        return redirect()->route('dashboard');
     }
 }

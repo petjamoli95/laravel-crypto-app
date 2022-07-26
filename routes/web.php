@@ -3,9 +3,9 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\CryptoController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\WatchlistController;
+use App\Http\Controllers\Crypto\CryptoController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Watchlist\WatchlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,24 +19,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class, 'show'])->name('dashboard');
-Route::post('/', [WatchlistController::class, 'store']);
-Route::delete('/{crypto}', [WatchlistController::class, 'destroy'])->name('dashboard.destroy');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/watchlist', [WatchlistController::class, 'show'])->name('watchlist');
-Route::delete('/watchlist/{crypto}', [WatchlistController::class, 'destroy'])->name('watchlist.destroy');
+Route::resource('watchlist', WatchlistController::class, ['only' => ['index', 'store', 'destroy']]);
 
-Route::post('/cryptos/index', [CryptoController::class, 'index'])->name('crypto.index');
-Route::get('/cryptos/show/{crypto:api_id}', [CryptoController::class, 'show'])->name('crypto.show');
-Route::post('/cryptos/show/', [WatchlistController::class, 'store'])->name('crypto.store');
-Route::delete('/cryptos/show/', [WatchlistController::class, 'destroy'])->name('crypto.destroy');
+Route::resource('crypto', CryptoController::class, ['only' => ['index', 'show']]);
 
-Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+Route::post('/logout', [LogoutController::class, 'store'])->name('logout')->middleware('auth');
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'store']);
+Route::resource('login', LoginController::class, ['only' => ['index', 'store']]);
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
-
-// Route::resource('cryptos', CryptoController::class);
+Route::resource('register', RegisterController::class, ['only' => ['index', 'store']]);

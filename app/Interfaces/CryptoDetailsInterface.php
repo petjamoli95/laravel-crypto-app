@@ -4,7 +4,6 @@ namespace App\Interfaces;
 
 interface CryptoDetailsInterface
 {
-
-  public function getTopCryptoDetails();
-
+    public function top();
+    public function search($input);
 }
