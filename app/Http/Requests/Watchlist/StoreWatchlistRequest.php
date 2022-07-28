@@ -12,7 +12,7 @@ class StoreWatchlistRequest extends FormRequest
     public function rules()
     {
         return [
-            'api_id' => 'required|exists:cryptos,api_id',
+            'api_id' => 'required|exists:crypto_details,api_id',
         ];
     }
 }

@@ -20,7 +20,7 @@
     </div>
   @endif
   @auth
-  @if (!$crypto->crypto->watchlistedBy(Auth::user()))
+  @if (!$crypto->watchlistedBy(Auth::user()))
     <form action="{{ route('watchlist.store') }}" method="post">
       @csrf
       <input type="hidden" name="api_id" value="{{ $crypto['api_id'] }}">

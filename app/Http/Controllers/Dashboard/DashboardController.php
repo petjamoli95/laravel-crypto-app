@@ -26,7 +26,7 @@ class DashboardController extends Controller
     public function index()
     {
         $featured = $this->cryptoDetailsRepo->top();
-
+//        dd($featured);
         return view('pages.dashboard.index', compact('featured'));
     }
 }
