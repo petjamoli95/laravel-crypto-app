@@ -25,7 +25,7 @@ class SendPriceChangePercentageThresholdMetNotifications
      */
     public function handle(PriceChangePercentageThresholdMet $event)
     {
-        // TODO: Use a scope to get all the users with nthe crypto in their watchlist
+        // TODO: Use a scope to get all the users with the crypto in their watchlist
 
         // For all those users, notify
         foreach ($users as $user) {

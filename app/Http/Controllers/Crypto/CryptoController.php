@@ -34,12 +34,12 @@ class CryptoController extends Controller
     }
 
     /**
-     * @param  CryptoDetails  $cryptoDetails
+     * @param  CryptoDetails  $crypto
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(CryptoDetails $cryptoDetails)
+    public function show(CryptoDetails $crypto)
     {
-        $cryptoData = $cryptoDetails->coingeckoData();
+        $cryptoData = $crypto->coingeckoData();
 
         return view('pages.crypto.show', compact('cryptoData'));
     }

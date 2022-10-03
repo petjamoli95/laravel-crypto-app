@@ -69,7 +69,7 @@ class UpdateTopCoinDetailsFromApi extends Command
             );
 
             $bar->advance();
-            // TODO: CHeck this
+            // TODO: Check this
             if (Arr::get($item, 'price_change_percentage_24h') > 0.5) {
                 event(new PriceChangePercentageThresholdMet($item));
             }
