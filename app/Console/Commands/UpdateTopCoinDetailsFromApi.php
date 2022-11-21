@@ -37,9 +37,6 @@ class UpdateTopCoinDetailsFromApi extends Command
         $bar = $this->output->createProgressBar(count($cryptoDetails));
         $bar->start();
         foreach ($cryptoDetails as $item) {
-            // If price change percentage over x amount, trigger an event to send an email to the user.
-
-            // TODO: Make saving/updating this a job, and use in each place.
             $crypto = CryptoDetails::updateOrCreate(
                   ['api_id' => Arr::get($item, 'id')],
                   ['symbol' => Arr::get($item, 'symbol'),
@@ -69,7 +66,6 @@ class UpdateTopCoinDetailsFromApi extends Command
             );
 
             $bar->advance();
-            // TODO: Check this
             if (Arr::get($item, 'price_change_percentage_24h') > 0.5) {
                 event(new PriceChangePercentageThresholdMet($item));
             }

@@ -27,9 +27,14 @@ class WatchlistController extends Controller
      */
     public function index()
     {
-        $cryptos = Auth::user()->cryptos;
+        if (Auth::check()) {
+            $cryptos = Auth::user()->cryptos;
+            return view('pages.watchlist.index', compact('cryptos'));
+        } else {
+            return redirect()->route('login.index');
+        }
 
-        return view('pages.watchlist.index', compact('cryptos'));
+        // return view('pages.watchlist.index', compact('cryptos'));
     }
 
     /**
@@ -38,7 +43,6 @@ class WatchlistController extends Controller
      */
     public function store(StoreWatchlistRequest $request)
     {
-        // TODO: Create a middleware for getting the API ID from the request object
         $crypto = $this->cryptoDetailsRepo->findByApiId($request->api_id);
         WatchlistItem::dispatchSync(Auth::user(), $crypto);
 
@@ -53,7 +57,6 @@ class WatchlistController extends Controller
     {
         $crypto = $this->cryptoDetailsRepo->findByApiId($request->api_id);
 
-        // TODO: Make job for this
         $request->user()->cryptos()->detach($crypto);
 
         return back();

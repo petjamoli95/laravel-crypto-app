@@ -45,7 +45,6 @@ class PriceChangePercentageThresholdMetNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        // TODO: Write email (use $this->cryptoDetails)
         return (new MailMessage)
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))

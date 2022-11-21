@@ -35,7 +35,7 @@ class GetTopCoinDetailsFromApi extends Command
 
         $bar = $this->output->createProgressBar(count($cryptoDetails));
         $bar->start();
-        // TODO
+        
         foreach ($cryptoDetails as $item) {
             $crypto = CryptoDetails::firstOrCreate(
           ['api_id' => Arr::get($item, 'id')],
