@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Crypto;
 
-use App\Events\Cyrpto\PriceChangePercentageThresholdMet;
+use App\Events\Crypto\PriceChangePercentageThresholdMet;
 use App\Notifications\Crypto\PriceChangePercentageThresholdMetNotification;
 
 class SendPriceChangePercentageThresholdMetNotifications
@@ -25,6 +25,8 @@ class SendPriceChangePercentageThresholdMetNotifications
      */
     public function handle(PriceChangePercentageThresholdMet $event)
     {
+        $users = $event->cryptoDetails->users();
+
         foreach ($users as $user) {
             $user->notify(new PriceChangePercentageThresholdMetNotification($event->getCryptoDetails()));
         }

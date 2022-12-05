@@ -46,8 +46,8 @@ class PriceChangePercentageThresholdMetNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->line('Hello.')
+                    ->line("This is a notification informing you that {$this->cryptoDetails->name} on your watchlist has had a %{$this->cryptoDetails->price_change_percentage_24h} in the last 24 hours.")
                     ->line('Thank you for using our application!');
     }
 

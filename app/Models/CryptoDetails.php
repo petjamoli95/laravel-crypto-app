@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\Crypto\PriceChangePercentageThresholdMet;
 use App\Services\CoingeckoAPI;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

@@ -37,7 +37,7 @@ class UpdateTopCoinDetailsFromApi extends Command
         $bar = $this->output->createProgressBar(count($cryptoDetails));
         $bar->start();
         foreach ($cryptoDetails as $item) {
-            $crypto = CryptoDetails::updateOrCreate(
+            CryptoDetails::updateOrCreate(
                   ['api_id' => Arr::get($item, 'id')],
                   ['symbol' => Arr::get($item, 'symbol'),
                       'name' => Arr::get($item, 'name'),
@@ -62,13 +62,14 @@ class UpdateTopCoinDetailsFromApi extends Command
                       'atl' => Arr::get($item, 'atl'),
                       'atl_change_percentage' => Arr::get($item, 'atl_change_percentage'),
                       'atl_date' => Carbon::parse(Arr::get($item, 'atl_date'))->format('Y-m-d H:m:s'),
-                      'last_updated' => Carbon::parse(Arr::get($item, 'last_updated'))->format('Y-m-d H:m:s'), ]
+                      'last_updated' => Carbon::parse(Arr::get($item, 'last_updated'))->format('Y-m-d H:m:s'),]
             );
 
             $bar->advance();
-            if (Arr::get($item, 'price_change_percentage_24h') > 0.5) {
-                event(new PriceChangePercentageThresholdMet($item));
-            }
+
+            // if (Arr::get($item, 'price_change_percentage_24h') > 0.5) {
+            //     event(new PriceChangePercentageThresholdMet($item));
+            // }
         }
     }
 }
