@@ -1,23 +1,39 @@
 ## Crypto Watchlist
 
 A crypto market tracking app where the user can sign up and track cryptocurrency price changes and add them to their watchlist.
-
 ## Setup
 
 Clone the repository.
 
-Run ```composer install```
+Install app dependencies:
 
-Run ```npm install```
+```
+docker run --rm \
+-u "$(id -u):$(id -g)" \
+-v $(pwd):/var/www/html \
+-w /var/www/html \
+laravelsail/php81-composer:latest \
+composer install --ignore-platform-reqs
+```
 
-Run ```cp .env.example .env```
+Copy example .env:
 
-Run ```npm run dev```
+```cp .env.example .env```
 
-Run ```php artisan key:generate```
+Start Sail:
 
-Run ```php artisan migrate```
+```./vendor/bin/sail up```
 
-Run ```php artisan db:seed```
+Generate app key:
 
-Run ```php artisan serve```
+```php artisan key:generate```
+
+Migrate database:
+
+```php artisan migrate```
+
+Launch server:
+
+```php artisan serve```
+
+```npm run dev```
