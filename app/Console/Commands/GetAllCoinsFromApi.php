@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Crypto;
+use App\Models\CryptoDetails;
 use App\Services\CoingeckoAPI;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
@@ -36,7 +36,7 @@ class GetAllCoinsFromApi extends Command
         $bar->start();
 
         foreach ($cryptos as $crypto) {
-            Crypto::firstOrCreate([
+            CryptoDetails::firstOrCreate([
                 'api_id' => Arr::get($crypto, 'id'),
                 'symbol' => Arr::get($crypto, 'symbol'),
                 'name' => Arr::get($crypto, 'name'),
