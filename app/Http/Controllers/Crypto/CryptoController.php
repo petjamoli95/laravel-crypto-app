@@ -39,8 +39,6 @@ class CryptoController extends Controller
      */
     public function show(CryptoDetails $crypto)
     {
-        $cryptoData = $crypto->coingeckoData();
-
-        return view('pages.crypto.show', compact('cryptoData'));
+        return view('pages.crypto.show', compact('crypto'));
     }
 }
